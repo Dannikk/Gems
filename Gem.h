@@ -24,16 +24,17 @@ class Gem /*public sf::Drawable, public sf::Transformable*/
     bool flag;                           //Sign that the gem is highlighted
   public:
     Gem();
+    Gem(const Gem& cop);
     virtual void abstr() = 0;
-    void drawGem(sf::RenderWindow& window, sf::Vector2f position);
+    void drawGem(sf::RenderWindow& window, sf::Vector2f pos);
     void drawGem(sf::RenderWindow& window);
     void chooseGem();
     void unchooseGem();
-    void setColor(gemColor& color);
+    void setColor(gemColor& clr);
     void makeGemInvisible();
     //void CheckStrike();
 
-    //~Gem();
+    ~Gem();
   private:
     sf::Color chooseRandomColor();
 };

@@ -1,11 +1,14 @@
-﻿#include "Gem.h"
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+#include "Gem.h"
+#include <iostream>
+
+using namespace std;
 
 Gem::Gem()
 {
-  //sf::IntRect rect(1, 1, 420, 420);
-  //sf::CircleShape circle(50.f, 4);
-  //this->circ = sf::CircleShape(120.f);
-  
   this->shape = sf::CircleShape(50.f);
 
   //load simple texture
@@ -13,38 +16,34 @@ Gem::Gem()
 
   //load focused texture
   this->tex_focus.loadFromFile("C:\\Users\\nikit\\Downloads\\circle_gem_light.png");
-  printf("__constr__");
+  //printf("__constr__");
   //Choose random color for gem
-  sf::Color color = chooseRandomColor();
+  //sf::Color color = chooseRandomColor();
 
   this->shape.setTexture(&this->texture, true);
-  this->shape.setFillColor(color);
+  this->shape.setFillColor(chooseRandomColor());
   this->flag = 0;
-
-  //this->shape.setPosition(10.f, 30.f);
-
-  /*this->circ.setTexture(&this->tex_focus, true);
-  this->circ.setPosition(300.f, 30.f);
-  this->circ.setFillColor(sf::Color::Red);*/
-
-  /*this->sprite.setTexture(this->texture);
-  scl = this->sprite.getScale();
-  this->sprite.setScale(scl / 4.f);
-  this->sprite.move(80.f, 80.f);*/
-
-  
 
 }
 
-void Gem::drawGem(sf::RenderWindow &window, sf::Vector2f position) 
+Gem::Gem(const Gem& cop)
 {
-  printf("draw this\n");
+  texture = cop.texture;
+  tex_focus = cop.tex_focus;
+  shape = cop.shape;
+  color = cop.color;
+  position = cop.position;
+  flag = cop.color;
+  cout << "copy gem" << endl;
+}
+
+void Gem::drawGem(sf::RenderWindow &window, sf::Vector2f pos) 
+{
   
-  this->position = position;
-  this->shape.setPosition(position);
+  this->position = pos;
+  this->shape.setPosition(pos);
 
   window.draw(this->shape);
-  printf("now i'm here\n");
 }
 
 void Gem::drawGem(sf::RenderWindow& window)
@@ -64,21 +63,23 @@ void Gem::unchooseGem()
   this->flag = false;
 }
 
-//Gem::~Gem()
-//{
-//  
-//}
+Gem::~Gem()
+{
+ 
+
+  printf("__destruct__ %d\n", this->color);
+}
 
 sf::Color Gem::chooseRandomColor() 
 {
   //Choose int from 1 to COLORS(=6)
-  unsigned short int color = rand() % COLORS;
-  printf("Random color is %hu\n", color);
+  unsigned short int clr = rand() % COLORS;
+  //printf("Random color is %hu\n", clr);
 
-  this->color = (gemColor)color;
+  this->color = (gemColor)clr;
 
   //Return color
-  switch (color) {
+  switch (clr) {
   case gemColor::Red:
     return sf::Color::Red;
     break;
@@ -101,11 +102,11 @@ sf::Color Gem::chooseRandomColor()
 
 }
 
-void Gem::setColor(gemColor& color)
+void Gem::setColor(gemColor& clr)
 {
-  this->color = color;
+  this->color = clr;
 
-  switch (color) {
+  switch (clr) {
   case gemColor::Red:
     this->shape.setFillColor(sf::Color::Red);
     break;
