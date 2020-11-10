@@ -16,7 +16,7 @@ const unsigned short int ARRAY_SIZE = my_SIZE * my_SIZE;    // Размер ма
 const unsigned short int CELL_SIZE = 105;                   // Размер плашки в пикселях
 const unsigned short int LEFT_INDENT = 100;                 // Left indent of game field
 const unsigned short int UP_INDENT = 30;                    // Right indent of game field
-const unsigned short int ANIMATION_SPEED = 2;               // Speed of movement of gems
+const unsigned short int ANIMATION_SPEED = 5;               // Speed of movement of gems
 
 class Field/* : public sf::Drawable, public sf::Transformable*/
 {

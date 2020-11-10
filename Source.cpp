@@ -16,6 +16,7 @@ int main()
   // Объект, который, собственно, является главным окном приложения
   RenderWindow window(VideoMode(1200, 675), "SFML Works!");
   window.setFramerateLimit(60);
+  //window.setVerticalSyncEnabled(true);
 
   //int hor = 0, vert = 0;
   //sf::Texture texture;

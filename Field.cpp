@@ -328,6 +328,8 @@ void Field::destroyGemStreak(sf::RenderWindow& window, vector<int>& streak)
         //window.draw(gems[j]->shape);
         //window.display();
         //Sleep(1000);
+        //
+
         gems[j]->~Gem();
         gems[j] = NULL;
         j = j - my_SIZE;
@@ -354,6 +356,8 @@ void Field::destroyGemStreak(sf::RenderWindow& window, vector<int>& streak)
       {
         j = streak[i];
         //gems[j]->makeGemInvisible();
+        //
+
         gems[j]->~Gem();
         gems[j] = NULL;
       }
